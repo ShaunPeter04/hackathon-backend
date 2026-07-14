@@ -13,11 +13,18 @@ app.get("/test", (req, res) => {
     res.send("hello world")
 })
 
-app.post("/add-team", async(req, res) => {
+app.post("/add-team", async (req, res) => {
 
     await Team.create(req.body)
     res.json({ "status": "success" })
 })
+
+app.post("/view-teams", async (req, res) => {
+
+    const teams = await Team.find()
+    res.json(teams)
+})
+
 
 app.listen(3000, () => {
 
